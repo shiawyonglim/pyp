@@ -5,7 +5,7 @@ student_file = 'student.txt'
 lecturer_file = 'lecturer.txt'
 faculty_file = 'faculty.txt'
 
-def add_new_module (): #done checking waiting for change
+def add_new_module (): #done checking 
     print ("--- Add new module ---")
     while True:
         new_module = input("Type 'start' to enter module details or type 'quit' to quit: ")
@@ -30,19 +30,33 @@ def add_new_module (): #done checking waiting for change
                     break
 
             module_credit = input("Enter the module credit: ")
+            
+            faculty = input("Enter the faculty: ")
+            existing_faculty = []
             try:
-                with open(module_file, "a") as file:
-                    file.write(f"{module_code}, {module_name}, {module_credit}\n")
-                    print("Module has been added successfully!")
+                with open(faculty_file, "r") as file:
+                    existing_faculty = [line.strip().split(", ") for line in file.readlines()]
             except FileNotFoundError:
-                print("file not found.")
-                return
+                print(f"{faculty_file} not found. A new file will be created upon saving.\n")
+            if any (faculty == f[0] for f in existing_faculty):
+                try:
+                    with open(module_file, "a") as file:
+                        file.write(f"{module_code}, {module_name}, {module_credit},{faculty}\n")
+                        print("Module has been added successfully!")
+                except FileNotFoundError:
+                    print("file not found.")
+                    return
+            else:
+                print ("The faculty does not exist.")
+
         elif new_module.lower() == 'quit':
             print("Exiting program. All data has been saved.\n")
             break
 
         else:
             print("Invalid input. Please type 'start' or 'quit'.\n")
+
+
 
 
 
@@ -334,9 +348,6 @@ def view_all_data():# done checking
         except FileNotFoundError:
             print(f"Error: The file '{student_file}' was not found.")
 
-        
-
-
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
 
@@ -364,8 +375,7 @@ def admin():
                 register_new_student()
             if choice == "2":
                 remove_student()
-            else:
-                print ("Invalid input. Please try again.")
+
         elif choice == "3":
             print ("1. Add lecturers")
             print ("2. Remove lecturers")
@@ -377,8 +387,7 @@ def admin():
                 remove_lecturer()
             elif choice == "3":
                 update_lecturer()
-            else:
-                print ("Invalid input. Please try again.")
+
         elif choice == "4":
             print ("1. Total students report")
             print ("2. Active courses report")

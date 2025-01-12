@@ -107,12 +107,14 @@ def view_attendance(student_id):
         return
 
     for record in student_attendance:
-        print(f"Course: {record[1]}, Date: {record[2]}, Status: {record[3]}")
+        print(f"Module: {record[1]}, Date: {record[2]}, Status: {record[3]}")
 
 
 
 #unenroll module part
 def unenroll_module(student_id):
+    view_enrolled_module(student_id)
+
     course_code = input("Enter course code to unenroll: ")
 
     # Read current enrollments

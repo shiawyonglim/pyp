@@ -11,7 +11,6 @@ CS010, Bachelor of Science (Honours) in Computer Science with a specialism in Da
 CS011, Bachelor of Science (Honours) in Computer Science with a specialism in Digital Forensics, 90000  
 CS012, Bachelor of Science (Honours) in Computer Science (Cyber Security), 90000  
 CS013, Bachelor of Computer Science (Hons) (Artificial Intelligence), 90000 
-
 BUS001, Bachelor of Arts (Honours) in Business Management, 78000  
 BUS002, Bachelor of Arts (Honours) in Business Management with a specialism in E-Business, 78000  
 BUS003, Bachelor of Arts (Honours) in Business Management with a specialism in Digital Leadership, 78000  
@@ -19,7 +18,6 @@ BUS004, Bachelor of Arts (Honours) in Business Management with a specialism in B
 BUS005, Bachelor of Arts (Honours) in Human Resource Management, 78000  
 BUS006, Bachelor of Arts (Honours) in International Business Management, 78000  
 BUS007, Bachelor of Arts (Honours) in Marketing Management, 78000  
-
 ENG001, Bachelor of Electrical and Electronic Engineering with Honours, 130000  
 ENG002, Bachelor of Mechatronic Engineering with Honours, 130000  
 ENG003, Bachelor of Mechanical Engineering with Honours, 130000  

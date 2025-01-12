@@ -1,0 +1,2 @@
+111,123,123,12345
+111,SS001,111,& C:/Python311/python.exe c:/Users/user/Downloads/University-management-syetem/registrar.py

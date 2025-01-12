@@ -22,7 +22,6 @@ def register_new_student(): #done checking
     student_name = input("Enter Student Name: ")
     course = input("Enter Course: ")
     contact_information = input("Enter your Contact Information: ")
-    # [(),()] [{},{}]
     student_pass= (student_id+'@'+course)
 
     student = {
@@ -39,7 +38,8 @@ def register_new_student(): #done checking
         file.write(f"{student['Student ID']},{student['Student password']}\n")
 
     print("Register New Student Successfully.")
-    
+
+
 def remove_student(): #done checking
     print ("--- Remove student ---")
     print("-" * 100)

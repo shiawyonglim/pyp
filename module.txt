@@ -14,3 +14,4 @@ M013, Advertising Strategies (AS), 3, Business and Marketing
 M014, Business Ethics (BE), 3, Business and Marketing
 M015, Engineering Design (ED), 3, Engineering
 M016, Engineering Mechanics (EM), 3, Engineeringses, 
+111, 111, 111,F001

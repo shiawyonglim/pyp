@@ -5,39 +5,39 @@ def paid():
      with open("student_name_list.txt", "r") as file:
          lines = file.readlines()
          student_exists = any(student_id == line.strip().split(',')[0] for line in lines)
-     outstading_fee = None
+     outstanding_fee = None
      if student_exists:
-                     with open("outstanding.txt",'r')as file:
-                         lines=file.readlines()
-                         for line in lines:
-                             line=line.strip().split(",")
-                             if line[0]==student_id:
-                                 outstading_fee=line[-1]
-                                 break
-     if outstading_fee is None:  # Check if outstading_fee is None
-                     outstading_fee = 0
+         with open("outstanding.txt",'r')as file:
+             lines=file.readlines()
+             for line in lines:
+                 line=line.strip().split(",")
+                 if line[0]==student_id:
+                     outstanding_fee=line[-1]
+                     break
+     if outstanding_fee is None:  # Check if outstanding_fee is None
+                     outstanding_fee = 0
 
 
-     if float(outstading_fee)>0:
-                         while True:
-                             try:
-                                 print("-------------------------")
-                                 print(f"Oustading Fee = {outstading_fee}")
-                                 tuition_fee = float(input("Enter tuition fee amount:"))
-                                 if tuition_fee > 0:
-                                    if tuition_fee <= float(outstading_fee):
-                                        update_file(student_id, tuition_fee)
-                                        return
-                                    else:
-                                        print(f"Tuition fee cannot greater then the outstading amount ({outstading_fee})")
-                                        print("Please re-enter")
+     if float(outstanding_fee)>0:
+         while True:
+             try:
+                 print("-------------------------")
+                 print(f"Oustading Fee = {outstanding_fee}")
+                 tuition_fee = float(input("Enter tuition fee amount:"))
+                 if tuition_fee > 0:
+                    if tuition_fee <= float(outstanding_fee):
+                        update_file(student_id, tuition_fee)
+                        return
+                    else:
+                        print(f"Tuition fee cannot greater then the outstanding amount ({outstanding_fee})")
+                        print("Please re-enter")
 
-                                 else:
-                                     print("Please enter a positive number.")
-                             except ValueError:
-                                 print("Please enter a valid number.")
+                 else:
+                     print("Please enter a positive number.")
+             except ValueError:
+                 print("Please enter a valid number.")
 
-     elif float(outstading_fee)<=0:
+     elif float(outstanding_fee)<=0:
                        print ("This student have fully paid their course fee ")
 
      else:
@@ -101,10 +101,10 @@ def receipts(student_id,tuition_fee,new_num):
 
          with open("fin_sum.txt", 'w') as file:
              file.writelines(updated_lines)
-     outstading_fee()
+     outstanding_fee()
 
 
-def outstading_fee():
+def outstanding_fee():
 
      with open ("student_name_list.txt",'r')as namelist:
          lines=namelist.readlines()
@@ -119,11 +119,11 @@ def outstading_fee():
                      line_fin=line_fin.strip().split(",")
                      if line_fin[0] == student_id:
                          collected=line_fin[-1]
-                         outstading=float(course_fee)-float(collected)
-                         updated_line=(f"{line_fin[0]},{outstading}\n")
+                         outstanding=float(course_fee)-float(collected)
+                         updated_line=(f"{line_fin[0]},{outstanding}\n")
                          updated_lines.append(updated_line)
                          break
-         with open("outstading.txt",'w') as oustading:
+         with open("outstanding.txt",'w') as oustading:
              oustading.writelines(updated_lines)
 
 
@@ -159,19 +159,19 @@ def financial_total_course_fee():#vs total course fee
 
 def compare_receipt_and_course_fee(total_fee, total_receipt):
      financial_sumary= float(total_fee) - float(total_receipt)
-     print(f"----------------------------\nTotal Outstading = RM{financial_sumary}\n")
+     print(f"----------------------------\nTotal outstanding = RM{financial_sumary}\n")
 
 
 
 def accountant_menu ():
      while True:
-        print("----------Accountance Menu-----------", "\n1.Record tuittion fees ", "\n2.View Outstading fees","\n3.Financial Sumary","\n4.Main Menu");
+        print("----------Accountance Menu-----------", "\n1.Record tuittion fees ", "\n2.View outstanding fees","\n3.Financial Sumary","\n4.Main Menu");
         task = input("Enter number of task : ")
         if task=="1":
           paid()
         elif task == "2":
-            print("--------------------------------------\nList of student with Outstading Fees")
-            with open("outstading.txt", 'r') as file:
+            print("--------------------------------------\nList of student with outstanding Fees")
+            with open("outstanding.txt", 'r') as file:
                 print(file.read())
         elif task == "3":
            total_fee = financial_total_course_fee()
