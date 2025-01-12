@@ -1,0 +1,18 @@
+LL002, Dr. Charles Carter, Engineering
+LL003, Prof. Daniel Davis, Design and animation
+LL004, Dr. Emily Evans, Business and marketing
+LL005, Prof. Fiona Fisher, Accounting and finance
+LL006, Dr. George Green, Engineering
+LL007, Prof. Hannah Hall, Design and animation
+LL008, Dr. Julia Johnson, Engineering
+LL009, Prof. Kevin King, Business and marketing
+LL010, Dr. Laura Lewis, Computing and technology
+LL011, Prof. Michael Miller, Computing and technology
+LL012, Dr. Natalie Nelson, Engineering
+LL013, Prof. Olivia Owens, Design and animation
+LL014, Dr. Paul Peterson, Business and marketing
+LL015, Dr. Rachel Roberts, Accounting and finance
+LL016, Prof. Sarah Smith, Accounting and finance
+LL017, Dr. Thomas Taylor, Design and animation
+LL018, Dr. Xavier Xu, Computing and technology
+LL019, Dr. Yolanda Young, Business and marketing

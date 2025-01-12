@@ -1,0 +1,16 @@
+M001, Digital Thinking (DGTIN), 3, Computing and Technology
+M002, Introduction to Database Systems (IDB), 3, Computing and Technology
+M003, Information Networks (IN), 3, Computing and Technology
+M004, Python Programming (PYP), 3, Computing and Technology
+M005, Software Systems and Computing Consepts (SSCC), 3, Computing and Technology
+M006, Accounting Information Systems (AIS), 3, Accounting and Finance
+M007, Introduction to Tax Management (ITM), 3, Accounting and Finance
+M008, Financial Accounting (FA), 3, Accounting and Finance
+M009, Animation Principles (AP), 3, Design and Animation
+M010, Introduction to Film and Character Animation (IFCA), 3, Design and Animation
+M011, Fundamentals of Entertainment (FOE), 3, Design and Animation
+M012, Project Management (PM), 3, Business and Marketing
+M013, Advertising Strategies (AS), 3, Business and Marketing
+M014, Business Ethics (BE), 3, Business and Marketing
+M015, Engineering Design (ED), 3, Engineering
+M016, Engineering Mechanics (EM), 3, Engineeringses, 

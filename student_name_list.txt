@@ -1,0 +1,15 @@
+SS001,Alice Smith,pass123,2024-01-15,Bachelor of Science in Computer Science,+1234567890
+SS002,IN2024-01,Bob Johnson,bob123,2024-01-16,Bachelor of Science in Computer Science (AI),30000
+SS003,IN2023-09,Charlie Lee,charlie1,2023-09-20,Bachelor of Science in Computer Science (AI),30000
+SS004,IN2023-09,Diana Brown,diana45,2023-09-22,Bachelor of Science in Computer Science,29890
+SS005,IN2025-02,Emily Johnson,emily123,2025-02-01,Bachelor of Science in Computer Science (CE),30500
+SS006,IN2025-02,Frank White,frank999,2025-02-03,Bachelor of Science in Financial Technology,28900
+SS007,IN2024-03,Grace Black,grace456,2024-03-10,Bachelor of Science in Computer Science,29890
+SS008,IN2025-02,Hank Miller,hank321,2025-02-15,Bachelor of Science in Computer Science (DB),28970
+SS009,IN2024-01,Ivy Green,ivy000,2024-01-20,Bachelor of Science in Computer Science,29890
+SS010,IN2023-09,Jack Brown,jacky22,2023-09-25,Bachelor of Science in Financial Technology,28900
+SS011,IN2025-02,Kimberly Adams,kim888,2025-02-05,Bachelor of Science in Computer Science (DB),28970
+SS012,IN2024-03,Liam Scott,liam654,2024-03-12,Bachelor of Science in Financial Technology,28900
+SS013,IN2024-01,Mary White,mary321,2024-01-25,Bachelor of Science in Computer Science (DB),28970
+SS014,IN2025-02,Nathan Black,nathan999,2025-02-18,Bachelor of Science in Computer Science (CE),30500
+SS015,IN2023-09,Olivia Johnson,olivia123,2023-09-30,Bachelor of Science in Computer Science (AI),30000
