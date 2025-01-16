@@ -1,8 +1,19 @@
+student_file = 'student.txt'
+enrollment_file = 'enrollments.txt'
+outstanding_file = 'outstanding.txt'
+
+
 def paid():
      student_id = input("Kindly enter student ID: ").upper()
 
+     with open(outstanding_file, "r") as file:
+         lines = file.readlines()
+         student_in_outstanding = any(student_id == line.strip().split(',')[0] for line in lines)
+         if not student_in_outstanding:
+             print("Student is not inside.")
+             return
      # Check if student exists in the name list
-     with open("student_name_list.txt", "r") as file:
+     with open(student_file, "r") as file:
          lines = file.readlines()
          student_exists = any(student_id == line.strip().split(',')[0] for line in lines)
      outstanding_fee = None
@@ -15,7 +26,7 @@ def paid():
                      outstanding_fee=line[-1]
                      break
      if outstanding_fee is None:  # Check if outstanding_fee is None
-                     outstanding_fee = 0
+        outstanding_fee = 0
 
 
      if float(outstanding_fee)>0:
@@ -106,7 +117,7 @@ def receipts(student_id,tuition_fee,new_num):
 
 def outstanding_fee():
 
-     with open ("student_name_list.txt",'r')as namelist:
+     with open ("student.txt",'r')as namelist:
          lines=namelist.readlines()
          updated_lines = []
          for line in lines :
@@ -141,8 +152,10 @@ def financial_total_receipt():#vs total receipt
 
 
 
+
+
 def financial_total_course_fee():#vs total course fee
-   with open("student_name_list.txt",'r')as file :
+   with open("student.txt",'r')as file :
      lines=file.readlines()
      total_fee_list=[]
 

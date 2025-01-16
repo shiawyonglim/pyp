@@ -1,4 +1,5 @@
 from datetime import datetime
+from accountant import outstanding_fee
 from costum_functions import read_file, save_data , append_data
 
 
@@ -7,7 +8,10 @@ course_file = "./course.txt"
 enrollment_file = "./enrollments.txt"
 grade_file = "./grades.txt"
 module_file = "./module.txt"
-
+attendance_file = "./attendance.txt"
+attendance_module_file = "./attendance_module.txt"
+outstanding_file = "./outstanding.txt"
+student_login_file = "./Student_login.txt"
 
 #view modules part
 def view_available_modules():
@@ -37,17 +41,34 @@ def enroll_module(student_id):
         print("Course not found")
         return
 
+    
+    # Find a random lecturer assigned to the module
+    lecturers_module = read_file("lec_modules.txt")
+    module_lecturers = [l for l in lecturers_module if l[1] == course_code]
+    if module_lecturers:
+        import random
+        lecturer_id = random.choice(module_lecturers)[0]
+
+        # Connect student, module, and lecturer in instd_module.txt
+        std_module = read_file("std_module.txt")
+        std_module.append([student_id, course_code, lecturer_id])
+        append_data("std_module.txt", std_module)
+    else:
+        print("No lecturer found for this module.")
+        return
     # Check if already enrolled
     enrollments = read_file(enrollment_file)
     if any(e[0] == student_id and e[1] == course_code for e in enrollments):
-        print("Already enrolled in this course")
+        print("Already enrolled in this module")
         return
 
     # Add enrollment
     enrollments.append(
         [student_id, course_code,datetime.now().strftime('%Y-%m-%d')])
     append_data(enrollment_file, enrollments)
-    print("Successfully enrolled in course")        
+    print("Successfully enrolled in course")      
+
+
 
     
 #view grades part
@@ -84,7 +105,7 @@ def view_grades(student_id):
 
     print(f"Grades for student {student_id}:")
     for grade in student_grades:
-        course_name, grade_value = grade[1], grade[2]
+        course_name, grade_value = grade[2], grade[3]
         gpa = grade_to_gpa.get(grade_value, 0.0)
         course_count += 1
         cgpa += gpa
@@ -99,15 +120,28 @@ def view_grades(student_id):
 
 #view attendance part
 def view_attendance(student_id):
-    attendance = read_file('attandance.txt')
-    student_attendance = [a for a in attendance if a[0] == student_id]
+    # Read attendance records
+    attendance = read_file(attendance_file)  # Corrected file name
+    student_attendance = [record for record in attendance if record[0] == student_id]
 
     if not student_attendance:
         print("No attendance records found")
         return
 
-    for record in student_attendance:
-        print(f"Module: {record[1]}, Date: {record[2]}, Status: {record[3]}")
+    for attendance_record in student_attendance:
+        attendance_code = attendance_record[1] 
+        attendance_status = attendance_record[2]  
+        timestamp = attendance_record[3]  
+
+        attendance_module = read_file(attendance_module_file)  
+        module_record = next((m for m in attendance_module if m[0] == attendance_code), None)
+
+        if module_record:
+            lecturer_id = module_record[1]  
+            module_code = module_record[2]  
+            print(f"Module: {module_code}, Attendance: {attendance_status}, Time: {timestamp}, Lecturer ID: {lecturer_id}")
+        else:
+            print(f"Module: {attendance_code}, Attendance: {attendance_status}, Time: {timestamp}, Lecturer ID: Not Found")
 
 
 
@@ -141,7 +175,7 @@ def unenroll_module(student_id):
 #add student view fees 
 
 def view_outstanding_fees(student_id):
-    fees = read_file('outstanding.txt')
+    fees = read_file(outstanding_file)
     student_fees = [f for f in fees if f[0] == student_id]
 
     if not student_fees:
@@ -165,14 +199,14 @@ def view_enrolled_module(student_id):
 
 def change_password(studentid):
     current_password = input("Enter your current password: ")
-    students = read_file("Student_login.txt")
+    students = read_file(student_login_file)
     for i, student in enumerate(students):
         if student[0] == studentid and student[1] == current_password:
             new_password = input("Enter your new password: ")
             confirm_password = input("Confirm your new password: ")
             if new_password == confirm_password:
                 students[i][1] = new_password
-                save_data("Student_login.txt", [",".join(s) for s in students])
+                save_data(student_login_file, [",".join(s) for s in students])
                 print("Password changed successfully")
                 return
             else:

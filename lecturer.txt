@@ -1,19 +1,20 @@
-LL002, Dr. Charles Carter, Engineering
-LL003, Prof. Daniel Davis, Design and animation
-LL004, Dr. Emily Evans, Business and marketing
-LL005, Prof. Fiona Fisher, Accounting and finance
-LL006, Dr. George Green, Engineering
-LL007, Prof. Hannah Hall, Design and animation
-LL008, Dr. Julia Johnson, Engineering
-LL009, Prof. Kevin King, Business and marketing
-LL010, Dr. Laura Lewis, Computing and technology
-LL011, Prof. Michael Miller, Computing and technology
-LL012, Dr. Natalie Nelson, Engineering
-LL013, Prof. Olivia Owens, Design and animation
-LL014, Dr. Paul Peterson, Business and marketing
-LL015, Dr. Rachel Roberts, Accounting and finance
-LL016, Prof. Sarah Smith, Accounting and finance
-LL017, Dr. Thomas Taylor, Design and animation
-LL018, Dr. Xavier Xu, Computing and technology
-LL019, hello world, eng
-fdkfgh, afdhsdfk, dafskskf
+LL001, Dr. Amanda Anderson, Computing and technology, tp070401@mail.apu.edu.my
+LL002, Dr. Charles Carter, Engineering, tp070402@mail.apu.edu.my
+LL003, Prof. Daniel Davis, Design and animation, tp070403@mail.apu.edu.my
+LL004, Dr. Emily Evans, Business and marketing, tp070404@mail.apu.edu.my
+LL005, Prof. Fiona Fisher, Accounting and finance, tp070405@mail.apu.edu.my
+LL006, Dr. George Green, Engineering, tp070406@mail.apu.edu.my
+LL007, Prof. Hannah Hall, Design and animation, tp070407@mail.apu.edu.my
+LL008, Dr. Julia Johnson, Engineering, tp070408@mail.apu.edu.my
+LL009, Prof. Kevin King, Business and marketing, tp070409@mail.apu.edu.my
+LL010, Dr. Laura Lewis, Computing and technology, tp070410@mail.apu.edu.my
+LL011, Prof. Michael Miller, Computing and technology, tp070411@mail.apu.edu.my
+LL012, Dr. Natalie Nelson, Engineering, tp070412@mail.apu.edu.my
+LL013, Prof. Olivia Owens, Design and animation, tp070413@mail.apu.edu.my
+LL014, Dr. Paul Peterson, Business and marketing, tp070414@mail.apu.edu.my
+LL015, Dr. Rachel Roberts, Accounting and finance, tp070415@mail.apu.edu.my
+LL016, Prof. Sarah Smith, Accounting and finance, tp070416@mail.apu.edu.my
+LL017, Dr. Thomas Taylor, Design and animation, tp070417@mail.apu.edu.my
+LL018, Dr. Xavier Xu, Computing and technology, tp070418@mail.apu.edu.my
+LL019, Dr. Yolanda Young, Business and marketing, tp070419@mail.apu.edu.my
+LL020, Prof. Zachary Zane, Accounting and finance, tp070420@mail.apu.edu.my

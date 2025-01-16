@@ -8,7 +8,7 @@ student_file = "./student.txt"
 course_file = "./course.txt"
 enrollment_file = "./enrollments.txt"
 grade_file = "./grades.txt"
-
+oustanding_file = "./outstanding.txt"
 
 def register_new_student(): #done checking
     print("Registering a new student...")
@@ -34,9 +34,18 @@ def register_new_student(): #done checking
 
     with open(student_file, "a") as file:
         file.write(f"{student['Student ID']},{student['Student Name']},{student['Course']},{student['Contact Information']}\n")
+        
     with open('Student_login.txt', "a") as file:
         file.write(f"{student['Student ID']},{student['Student password']}\n")
-
+    
+    with open(course_file, "r") as file:
+        lines = file.readlines()
+        for line in lines:
+            if student['Course'] == line.split(",")[0]:
+                outstanding_status = line.split(",")[2].strip()
+                with open(oustanding_file, "a") as file:
+                    file.write(f"{student['Student ID']},{outstanding_status}\n")
+                break
     print("Register New Student Successfully.")
 
 
