@@ -1,12 +1,8 @@
-download the zip file
 
-extract the file
-
-open the main.py
-
-run the main.py file (do not add new function or the code will break)
-
-  default student login student id = SS001 student password = 121
-  
+  default student login student id = SS001 student password = 111
+  default lecturer login lecturer id = LL001 lecturer password = 111
   default admin, accountant and registrar id = 111 password = 111
 
+
+if there is problem with the code i have uploaded the ocded to github also
+https://github.com/shiawyonglim/pyp
