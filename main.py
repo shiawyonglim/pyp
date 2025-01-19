@@ -1,21 +1,27 @@
+
+#import section
 from registrar import registrar_menu
 from student import student_menu
 from accountant import accountant_menu
 from lecturer import lecturer_menu
 from admin import admin
-from costum_functions import read_file, save_data, append_data
+from costum_functions import read_file
+
 
 #login using the role the user choose 
 def login(role):
     while True:
         id = input(f"please input your {role}id: ")
         password = input("Password: ")
+        #diffrent role have diffrent id and password andthey are all taken from diffrent file
         user = read_file(role + '_login.txt')
 
         for user in user:
             if user[0] == id and user[1] == password:
                 return user[0]
         print("Invalid credentials. Try again.")
+
+
 
 
 #main menu of the whole system
@@ -53,6 +59,9 @@ def main():
             break
         else:
             print("Invalid choice")
+
+
+
 
 
 main()

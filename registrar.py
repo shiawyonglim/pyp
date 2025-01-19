@@ -95,7 +95,7 @@ def update_student_record(): #done checking but waitng for update
             lines = file.readlines()
             for line in lines:
                 data = line.strip().split(",")  # Split line into fields
-                if len(data) >= 2 and data[1].strip() == student_id:  # Exact match for student ID
+                if len(data) >= 2 and data[0].strip() == student_id:  # Exact match for student ID
                     found = True
                     print(f"Match found: {line.strip()}")
                     # Proceed with update logic
@@ -111,12 +111,12 @@ def update_student_record(): #done checking but waitng for update
                             if not new_program.isalpha():
                                 print("Invalid program. Please enter letters only.")
                                 continue
-
+                            line_found = False
                             updated_lines = []
                             updated_lines1 = []
                             for line in lines:
                                 fields = line.strip().split(",")
-                                if len(fields) >= 3 and fields[1] == student_id:
+                                if len(fields) >= 3 and fields[0] == student_id:
                                     # Replace the line with updated content
                                     fields[2] = new_program
                                     updated_line = ",".join(fields) + "\n"

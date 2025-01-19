@@ -18,3 +18,5 @@ LL017, Dr. Thomas Taylor, Design and animation, tp070417@mail.apu.edu.my
 LL018, Dr. Xavier Xu, Computing and technology, tp070418@mail.apu.edu.my
 LL019, Dr. Yolanda Young, Business and marketing, tp070419@mail.apu.edu.my
 LL020, Prof. Zachary Zane, Accounting and finance, tp070420@mail.apu.edu.my
+
+

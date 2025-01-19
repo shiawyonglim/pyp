@@ -83,6 +83,7 @@ def update_file(student_id,tuition_fee ):
 
 
 def receipts(student_id,tuition_fee,new_num):
+     total = 0.0
      print("------RECEIPT--------")
      print(f"Student ID:{student_id}\nTotal Paid Amount:RM{tuition_fee}")
      with open("receipt.txt",'r')as file:
@@ -105,8 +106,8 @@ def receipts(student_id,tuition_fee,new_num):
              student_name = data[0]
 
              student_total_paid = [float(x) for x in data[1:]]
-             total = sum(student_total_paid)
-
+             for amount in student_total_paid:
+                 total += amount
              updated_line = f"{student_name},{total}\n"
              updated_lines.append(updated_line)
 
@@ -143,12 +144,16 @@ def financial_total_receipt():#vs total receipt
    with open ("fin_sum.txt",'r')as file:
      lines=file.readlines()
      total_paid_list=[]
+     total_receipt=0.0
+
      for line in lines :
        student_id,total_paid=line.strip().split(",")
        total_paid_list.append(float(total_paid))
-     total_receipt=sum(total_paid_list)
+     for amount in total_paid_list:
+         total_receipt +=amount
+         
      print(f"Total fees collected = RM{total_receipt}")
-   return total_receipt
+     return total_receipt
 
 
 
@@ -158,13 +163,15 @@ def financial_total_course_fee():#vs total course fee
    with open("student.txt",'r')as file :
      lines=file.readlines()
      total_fee_list=[]
+     total_course_fee = 0.0
 
      for line in lines :
         data =line.strip().split(",")
         course_fee=data[-1]
         total_fee_list.append(float(course_fee))
 
-     total_course_fee = sum(total_fee_list)
+     for fee in total_fee_list:
+       total_course_fee += fee        
      print(f"Total course fess = RM{total_course_fee}")
 
    return total_course_fee

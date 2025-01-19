@@ -1,10 +1,17 @@
+#import section
 from datetime import datetime
 from costum_functions import read_file, save_data, append_data
 
+
+#file path declaration
 student_file='./student.txt'
-lect_module_file = './lecturer_module.txt'
+lect_module_file = './lec_modules.txt'
 enrollments_file = './enrollments.txt'
 grades_file = './grades.txt'
+attendance_module_file = './attendance_modules.txt'
+module_file = './module.txt'
+attendance_file = './attendance.txt'
+
 
 
 grade_to_gpa = {
@@ -22,44 +29,47 @@ grade_to_gpa = {
     'F': 0.0
 }
 
+#check if grade is valid or not
 def check_grade(grade):
     if grade.upper() in grade_to_gpa:
         return True
     else:
         print('please enter a valid grade')
-        return False
 
-#Check if student exists or correct
+
+#Check if student exists or not
 def student_check(student_id):
-    student = read_file('student.txt')
+    student = read_file(student_file)
     for s in student:
         if s[0] == student_id:
             print("Student ID is found")
             return student_id
             
     print("student not found")
-    return
            
 
 
 #Check if module exists or correct
 def module_check(module_code):
-    module = read_file('module.txt')
+    module = read_file(module_file)
     for m in module:
         if m[0] == module_code:
             print("Module is found.You can proceed")
             return module_code
     print('Module not found')
-#This function is to check if the module assigned to the lecturer
 
+
+#This function is to check if the module assigned to the lecturer
 def assigned_module_check(lecturer_id,module_code):
-    module_assigned = read_file('lec_modules.txt')
+    module_assigned = read_file(lect_module_file)
     for a in module_assigned:
         if a[0] == lecturer_id and a[1] == module_code:
             print("You are assigned to this module.")
             return lecturer_id, module_code
     print("You are not assigned to this module.")
 
+
+#this function is to automatically make a attendance code
 def auto_attendance(last_attendance_code,student_number):
     first_alphabet = last_attendance_code[0]
     number= int(last_attendance_code[1:])
@@ -75,23 +85,25 @@ def auto_attendance(last_attendance_code,student_number):
 
 #this function is to view the student list
 def view_student_list(lecturer_id, module_code): # done checking
-    student_list = read_file('enrollments.txt')
+    student_list = read_file(enrollments_file)
+    #check if module code there is a module code provided 
     if module_code == 0:
         view_assigned_modules(lecturer_id)
-        # Check if module exists or correct
         module_code = module_check(input("Enter Module Code: "))
-        #Check if module is assigned to lecturer
         assigned_module_check(lecturer_id, module_code)
     else:
         pass
+
     print(f'list of student who enrolled in {module_code}')
+    #check if the student is enrolled by cjecking module code
     student_id_list = []
     for line in student_list:
         if line[1] == module_code:
             student_id_list.append(line[0])
     student_id_list.sort()
-    student = read_file('student.txt')
+    student = read_file(student_file)
     j = 0
+    #loop to print the student list
     for i in range(len(student_id_list)):
         for name in student:
             if name[0] == student_id_list[i]:
@@ -99,46 +111,53 @@ def view_student_list(lecturer_id, module_code): # done checking
                 j += 1
     if student_id_list == []:
         print("No student is enrolled in this module")
+        
+
 
 #this function is to view the assigned modules
-def view_assigned_modules(lecturer_id): # done no problem
-    module = read_file('lec_modules.txt')
-    module_name = read_file("module.txt")
+def view_assigned_modules(lecturer_id): # done check
+    module = read_file(lect_module_file)
+    module_name = read_file(module_file)
     module_code_list=[]
+    #loop to get the module code
     for m in module:
         if m[0] == lecturer_id:
             module_code_list.append(m[1])
 
+    #loop to print the assigned modules
     for i in range(len(module_code_list)):
         for m in module_name:
-            # if function cant run
             if m[0] == module_code_list[i]:
-                print(f"{i+1}. {m[0]}={m[1]}")
+                print(f"{i+1}. {m[0]}, {m[1]}")
 
 
 #this function is to view the student grades
 def view_grades(lecturer_id,module_code): # done
     grades=read_file(grades_file)
+    #check is module code is already assinged
+    lec_check = True
     if module_code == 0:
         view_assigned_modules(lecturer_id)
-        # Get module code
         module_code = module_check(input("Enter Module Code: "))
-        # Check if module assigned to the lecturer(PROBLEM)
-        assigned_module_check(lecturer_id,module_code)
+        lec_check = assigned_module_check(lecturer_id,module_code)
+        print(lec_check)
     else: 
         pass
-    print(f'list of student grade in {module_code}')
-    student_grades = []
-    for g in grades:
-        if g[2] ==module_code and g[1] == lecturer_id:
-            student_grades.append(g)
-    i=0
-    if student_grades == []:
-        print("No grades found")
-    else:
-        for grade in student_grades:
-            print(f"{i+1 }.StudentID= {grade[0]}, Grade= {grade[3]}")
-            i += 1
+    if lec_check:
+        print(f'list of student grade in {module_code}')
+        student_grades = []
+        #check lecturer and module code 
+        for g in grades:
+            if g[2] ==module_code and g[1] == lecturer_id:
+                student_grades.append(g)
+        i=0
+        if student_grades == []:
+            print("No grades found")
+        else:
+            #loop to print the grades
+            for grade in student_grades:
+                print(f"{i+1 }.StudentID= {grade[0]}, Grade= {grade[3]}")
+                i += 1
     
 #this function is to add the student grades
 def add_grades(lecturer_id): # done
@@ -181,18 +200,17 @@ def add_grades(lecturer_id): # done
 
     grades.append([student_id, lecturer_id, module_code, grade])
     append_data(grades_file, grades)
-#this function is to update the student grades
-
+    print("grade added sucessfully")
     
+#this function is to update the student grades
 def update_grades(lecturer_id): #done
     grades = read_file(grades_file)
-
     module_code = module_check(input("Enter Module Code: "))
-
     assigned_module_check(lecturer_id,module_code)
-
     student_id = student_check(input("Enter Student ID: "))
 
+    
+    # Check if student is enrolled in this module
     for g in grades:
         if g[0] == student_id and g[1] == lecturer_id and g[2] == module_code:          
            print(g) 
@@ -201,13 +219,14 @@ def update_grades(lecturer_id): #done
 
     new_grade = input("Enter new grade: ")
 
+    check_grade(new_grade)
     # Update grades.txt
     for i in range(len(grades)):
         if grades[i][0] == student_id and grades[i][1] == lecturer_id and grades[i][2] == module_code:
             grades[i][3] = new_grade
             break
 
-    save_data('grades.txt', grades)
+    save_data(grades_file, grades)
 
     print("Grade updated successfully.")
 
@@ -215,20 +234,20 @@ def update_grades(lecturer_id): #done
 #this function is to delete the student grades
 def delete_grades(lecturer_id): #done    
     module_code = module_check(input("Enter Module Code: "))
-
     assigned_module_check(lecturer_id,module_code)
-
     student_id = input("Enter Student ID: ")
 
-    with open('grades.txt', "r") as file:
+    with open(grades_file, "r") as file:
         lines = file.readlines()
         updated_lines = []
+        #loop to remove the grade
         for line in lines:
             if student_id not in line:
                 updated_lines.append(line)
 
+    #doubble ocnfirm
     if len(updated_lines) < len(lines):
-        with open('grades.txt', "w") as file:
+        with open(grades_file, "w") as file:
             file.writelines(updated_lines)
         print(f"Student with ID {student_id} removed.")
     else:
@@ -240,21 +259,14 @@ def delete_grades(lecturer_id): #done
 
 
 #this function is to mark attendance
-
-
-
-
 def mark_attendance(lecturer_id):
-    module = read_file('lec_modules.txt')
-    attendance = read_file('attendance.txt')
-    attendance_module = read_file("attendance_module.txt")
-    enrollments = read_file('enrollments.txt')
+    module = read_file(lect_module_file)
+    attendance = read_file(attendance_file)
+    attendance_module = read_file(attendance_module_file)
+    enrollments = read_file(enrollments_file)
 
-    # Check module code validity
     module_code = module_check(input("Enter Module Code: "))
     assigned_module_check(lecturer_id, module_code)
-
-    # Class time inputs
     class_start_time = input("Enter class start time in HH:MM: ")
     class_end_time = input("Enter class end time in HH:MM: ")
 
@@ -270,21 +282,22 @@ def mark_attendance(lecturer_id):
         else:
             print("Invalid choice. Please enter 'T' or 'L'.")
 
-    # Get students enrolled in the module
+    # find enrolled student
     student_id_list = [enrollment[0] for enrollment in enrollments if enrollment[1] == module_code]
 
     if not student_id_list:
         print("No students are enrolled in this module.")
         return
 
-    # Display student list
     print("Enrolled Students:")
     for i, student_id in enumerate(student_id_list, start=1):
         student_name = next((s[1] for s in enrollments if s[0] == student_id), "Unknown")
         print(f"{i}. {student_id} - {student_name}")
 
-    view_student_list(lecturer_id, module_code)  # Additional functionality, assuming it's defined
-
+    view_student_list(lecturer_id, module_code)  
+    
+    #cannot add select student just now (fixed)
+    #problem with attendance time(fixed)
     # Mark attendance for selected students
     mark_student_indices = input("Choose the numbers of the students to mark attendance for (e.g., 1 2 3): ").split()
     try:
@@ -308,53 +321,12 @@ def mark_attendance(lecturer_id):
     # Save attendance
     for student_id in selected_students:
         attendance.append([student_id, attendance_code, attendance_date, attendance_time])
-        append_data("attendance.txt", attendance)
+        append_data(attendance_file, attendance)
     attendance_module=[]
     attendance_module.append([attendance_code, lecturer_id, module_code, class_start_time, class_end_time, class_type])
-    append_data("attendance_module.txt",attendance_code )
+    append_data(attendance_module_file,attendance_code )
 
     print("Attendance marked successfully!")
-
-
-
-
-
-def delete_attendance(lecturer_id): #done
-    attendance_code = input('enter attendance code: ')
-    student_id = input("Enter Student ID: ")
-
-    with open('attendance.txt', "r") as file:
-        lines = file.readlines()
-        updated_lines = []
-        for line in lines:
-            if student_id not in line and attendance_code not in line:
-                updated_lines.append(line)
-
-    if len(updated_lines) < len(lines):
-        with open('attendance.txt', "w") as file:
-            file.writelines(updated_lines)
-        print(f"Student with ID {student_id} removed.")
-    else:
-        print(f"No student with ID {student_id} found.")
-
-def update_attendance(lecturer_id):
-
-    view_student_list(lecturer_id,0)
-    attendance = read_file('attendance.txt')
-
-
-    attendance_code = input('enter attendance code: ')
-    student_id = input("Enter module ID: ")
-
-    mark_student = input("Choose the number of the student you want to mark attendance for: ").split()
-
-    attendance_date = datetime.now().strftime("%x")
-    attendance_time = datetime.now().strftime("%X")
-
-    for i in mark_student:
-        student_id = student_id_list[int(i)-1]
-        attendance_time_taken = (attendance_date , attendance_time)
-        append_data("attendance.txt", [[student_id,attendance_code,attendance_time_taken]])
 
 
 
@@ -369,12 +341,9 @@ def lecturer_menu(lecturer_id):
         print("5. Update Student Grade")
         print("6. Delete Student Gradee")
         print("7. Mark Attendancee")
-        print("8. Update Attendance")
-        print('9. delete attendance')
-        print("10. Logout")
-
+        print('8. delete attendance')
+        print("9. Logout")
         choice = input("Enter choice: ")
-
         #choose that they want to do part
         if choice == '1':
             view_student_list(lecturer_id,0)
@@ -390,11 +359,7 @@ def lecturer_menu(lecturer_id):
             delete_grades(lecturer_id)
         elif choice == '7':
             mark_attendance(lecturer_id)
-        elif choice == '8':
-            update_attendance(lecturer_id)
-        elif choice == '9':
-            delete_attendance(lecturer_id)
-        elif choice=='10':
+        elif choice =='8':
             break
         else:
             print("Invalid choice")
